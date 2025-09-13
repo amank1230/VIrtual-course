@@ -1,12 +1,17 @@
 import mongoose from "mongoose";
 
+const MONGO_URI = "mongodb+srv://amank27092002_db_user:U2r3sYwdWNYZ9RYh@cluster0.oegayoa.mongodb.net/LMS";
+
 const connectDb = async () => {
-    let x = "mongodb+srv://amank27092002_db_user:U2r3sYwdWNYZ9RYh@cluster0.oegayoa.mongodb.net/LMS"
     try {
-        await mongoose.connect(x)
-        console.log("DB connected")
+        await mongoose.connect(MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log("✅ DB connected");
     } catch (error) {
-        console.log("DB error")
+        console.error("❌ DB error:", error.message);
     }
-}
-export default connectDb
+};
+
+export default connectDb;
